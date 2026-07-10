@@ -74,6 +74,19 @@ return {
         }
       })
 
+        vim.keymap.set('n', '<leader>rz', function()
+            local word = vim.fn.expand("<cword>")
+            vim.fn.jobstart({ 
+          "env", 
+          "QT_OPENGL=software", 
+          "QTWEBENGINE_CHROMIUM_FLAGS=--disable-gpu", 
+          "zeal", 
+          "--query", 
+          word 
+        })
+      end, { desc = "Zeal Lookup" })
+
+
       vim.api.nvim_create_autocmd('LspAttach', {
         callback = function(ev)
           local opts = { buffer = ev.buf }
@@ -81,7 +94,24 @@ return {
           vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
           vim.keymap.set('n', 'gr', vim.lsp.buf.references, opts)
           vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, opts)
-        end,
+	  vim.keymap.set({ 'n', 'v' }, '<leader>rc', vim.lsp.buf.code_action, opts)
+	  vim.keymap.set('n', '<leader>rd', vim.diagnostic.open_float, opts)
+	vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
+	vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
+	vim.keymap.set('n', '<leader>rf', function() vim.lsp.buf.format { async = true } end, opts)
+	vim.keymap.set('n', '<leader>rh', function()
+            vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ bufnr = ev.buf }), { bufnr = ev.buf })
+          end, opts)
+
+
+
+	local client = vim.lsp.get_client_by_id(ev.data.client_id)
+          if client and client.server_capabilities.inlayHintProvider and vim.lsp.inlay_hint then
+            vim.lsp.inlay_hint.enable(false, { bufnr = ev.buf })
+          end
+
+	end,
+
       })
 
       local capabilities = require('cmp_nvim_lsp').default_capabilities()
@@ -101,6 +131,14 @@ return {
         }
       })
       vim.lsp.enable('clangd')
+
+      vim.lsp.config('slangd', { capabilities = capabilities })
+      vim.lsp.enable('slangd')
+
+      vim.lsp.config('lua_ls', { capabilities = capabilities })
+      vim.lsp.enable('lua_ls')
+
     end
   }
 }
+
