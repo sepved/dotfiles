@@ -93,6 +93,7 @@ return {
           vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
           vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
           vim.keymap.set('n', 'gr', vim.lsp.buf.references, opts)
+	  vim.keymap.set('n', 'gK', function() vim.cmd('normal! ' .. vim.v.count1 .. 'K') end, opts) -- requiered: man-db man-pages
           vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, opts)
 	  vim.keymap.set({ 'n', 'v' }, '<leader>rc', vim.lsp.buf.code_action, opts)
 	  vim.keymap.set('n', '<leader>rd', vim.diagnostic.open_float, opts)
@@ -137,6 +138,8 @@ return {
 
       vim.lsp.config('lua_ls', { capabilities = capabilities })
       vim.lsp.enable('lua_ls')
+	vim.lsp.config('zls', { capabilities = capabilities })
+	vim.lsp.enable('zls')
 
     end
   }
