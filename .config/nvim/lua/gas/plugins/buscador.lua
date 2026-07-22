@@ -2,7 +2,9 @@ return {
   { 'folke/which-key.nvim', config = true },
   {
     'nvim-telescope/telescope.nvim',
-    tag = '0.1.8',
+    -- tag = 'v0.1.9',
+    tag = 'v0.2.1',
+    -- branch = "master",
     dependencies = {
       'nvim-lua/plenary.nvim',
       { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
@@ -14,6 +16,7 @@ return {
 
       telescope.setup({
         defaults = {
+	  borderchars = { "─", "│", "─", "│", "┌", "┐", "┘", "└" }, -- this line was not on reference config.
           sorting_strategy = "ascending",
           layout_strategy = "horizontal",
           layout_config = { prompt_position = "top" },
