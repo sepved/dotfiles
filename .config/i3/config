@@ -197,7 +197,5 @@ bar {
 exec --no-startup-id picom -b
 
 bindsym Mod4+Shift+s exec --no-startup-id flameshot gui
-bindsym Mod4+Shift+b exec floorp --new-tab "https://bevy.org/learn/quick-start/introduction/"
-bindsym Mod4+c exec floorp --new-tab "https://bevy-cheatbook.github.io/#how-to-use-this-book"
 
 include /home/gas/.config/i3/config.local

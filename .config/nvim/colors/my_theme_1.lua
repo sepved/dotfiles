@@ -5,29 +5,34 @@ end
 
 vim.g.colors_name = "my_theme_1"
 
+-- pendiente (ordenados por prioridad):
+-- 1. constant
+-- 2. string
+
 local c = {
-  bg           = "#001a55", --00174b 2dif L
-  bg_alt       = "#0d1322",
-  bg_float     = "#00222e",
-  fg           = "#bd61ff",
-  fg_alt       = "#8683f2",
+  bg           = "#151622", -- #00164b#001850#001a55#0b1d5a#323223#040b29#03071b#0b0c13#070917#020221#0b0c13#151622#141623#131524#111426#0e1229#13241f#132224
+  bg_alt       = "#000000", -- #0d1322#3a5598#220d15#01140f
+  bg_float     = "#00222e", -- #00222e
+  fg_float     = "#8a8a8a", -- 
+  fg           = "#d7acf7", -- #bd61ff#dfb3ff#d7acf7
+  fg_alt       = "#908ee7", -- #8683f2#908ee7
   border       = "#000000",
   line_nr      = "#3d4b68",
   cursor_line  = "#1a253d",
 
-  comment      = "#3e5e32",
-  keyword      = "#3fb7de",
-  func         = "#84a4b4", -- d991e3 blancogrisceleste naranjo
-  type         = "#9e6182",
-  string       = "#4e8923",
-  number       = "#f7acf2",
-  variable     = "#808080",
+  comment      = "#43523e", -- #3e5e32#43523e 
+  keyword      = "#a8e5f7", -- #3fb7de#6ac8e5#45d4ff#8bd1e6#a8e5f7#
+  func         = "#9c4b5e", -- #d991e3#84a4b4#b4a284#8536c0#9e2df2#f22d98#b51d40#9e203d#aa3d56#9c4b5e
+  type         = "#93619e", -- #9e6182#96619e
+  string       = "#d5ad6d", -- #4e8923#23896c#25a02b#0b4308#118687#44b6c5#73bfc9#73c9ba#7ac2b6#79beb0#6596d2#9765d2#d5ad6d
+  number       = "#f7acf2", -- #f7acf2#
+  variable     = "#b1b1b1", -- #808080#a6a6a6#cacaca#
   field        = "#e0e7f5",
-  constant     = "#9e6182",
-  operator     = "#fef957",
+  constant     = "#c69d8f", -- #9e6182#8e397b#b75ca3#bd72bf#bd92be#a6be92#9ea771#afaf7e#848467#6f7246#315a08#316101#488e01#48602f#008a86#006663#5c7916#795216#a5933b#99df43#b3da80#dab280#a05207#6a2005#5d311c#9c867b#c69d8f
+  operator     = "#fefba4", -- #fef957
 
   error        = "#ff3333",
-  warn         = "#ffcc00",
+  warn         = "#a78d25", -- #ffcc00#
   info         = "#00d5ff",
   hint         = "#7be89b",
 
@@ -58,9 +63,9 @@ hl(0, "Title",         { fg = c.keyword, bold = true })
 hl(0, "NonText",       { fg = c.line_nr })
 hl(0, "EndOfBuffer",   { fg = c.bg })
 
-hl(0, "NormalFloat",   { fg = c.border, bg = c.bg_float })
-hl(0, "FloatBorder",   { fg = c.border, bg = c.bg_float })
-hl(0, "FloatTitle",    { fg = c.border, bg = c.bg_float, bold = true })
+hl(0, "NormalFloat",   { fg = c.fg_float, bg = c.bg_float })
+hl(0, "FloatBorder",   { fg = c.border}) -- bg = c.fg_float
+hl(0, "FloatTitle",    { fg = c.border, bold = true }) -- bg = c.bg_float,
 
 hl(0, "Pmenu",         { fg = c.fg, bg = c.bg_alt })
 hl(0, "PmenuSel",      { fg = c.bg, bg = c.pmenu_sel, bold = true })

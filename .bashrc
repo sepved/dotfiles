@@ -29,6 +29,6 @@ echo -e "$W"
 alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 alias emedes='/usr/bin/git --git-dir=$HOME/emedes.git --work-tree=$HOME'
 
-export GDK_SCALE=1
-export GDK_DPI_SCALE=0.5
-alias zeal="QT_OPENGL=software QTWEBENGINE_CHROMIUM_FLAGS=--disable-gpu zeal"
+#export GDK_SCALE=1
+#export GDK_DPI_SCALE=0.5
+#alias zeal="QT_OPENGL=software QTWEBENGINE_CHROMIUM_FLAGS=--disable-gpu zeal"
