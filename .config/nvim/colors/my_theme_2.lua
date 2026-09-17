@@ -1,57 +1,47 @@
-if not vim.g.ccc_live_reload then
-  vim.cmd("highlight clear")
-
-  if vim.fn.exists("syntax_on") == 1 then
-    vim.cmd("syntax reset")
-  end
+vim.cmd("highlight clear")
+if vim.fn.exists("syntax_on") == 1 then
+  vim.cmd("syntax reset")
 end
-
 
 vim.g.colors_name = "my_theme_1"
 
--- beware the gates of hell             O     X     X 
---
--- X  X     X     X     X     X                  
--- 
--- god
---
--- XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-
--- which color is tab text not selected+warn(unsaved)
+-- pendiente (ordenados por prioridad):
+-- 1. constant
+-- 2. string
 
 local c = {
-  bg           = "#000000", -- 
-  bg_alt       = "#2e2e2e", -- 
-  bg_float     = "#525252", -- 
-  fg_float     = "#ffffff", --  unknown
-  fg           = "#2cff14", -- 0bffa
-  fg_alt       = "#ff2929", --  currently is both tab text and brackets
+  bg           = "#1b1e01", -- #00164b#001850#001a55#0b1d5a#323223#040b29#03071b#0b0c13#070917#020221#0b0c13#151622#141623#131524#111426#0e1229#13241f#132224#151622#000000#33332a#2c2b22#232221#201f1f#24231b#383207#323807#242801#
+  bg_alt       = "#000000", -- #0d1322#3a5598#220d15#01140f
+  bg_float     = "#00222e", -- #00222e
+  fg_float     = "#8a8a8a", -- 
+  fg           = "#cbb0df", -- #bd61ff#dfb3ff#d7acf7#cbb0df
+  fg_alt       = "#908ee7", -- #8683f2#908ee7
   border       = "#000000",
-  line_nr      = "#1d0047", -- 131725
-  cursor_line  = "#750606", --1a253d ?? waht is this
+  line_nr      = "#555946", -- #3d4b68#212937#
+  cursor_line  = "#1a253d",
 
-  comment      = "#640606", -- 
-  comment_bg   = "#141200",
-  keyword      = "#00621e", -- 
-  func         = "#f57b00", -- 
-  type         = "#dc0000", -- 
-  string       = "#424d71", -- 
-  number       = "#ff8095", -- 
-  variable     = "#2868d8", -- 
-  field        = "#513aca", -- put hue into purple
-  constant     = "#f409ff", -- 
-  operator     = "#1f57ff", -- 
+  comment      = "#65725f", -- #3e5e32#43523e#516549#545f4f#5e6a58#65725f
+  comment_bg   = "#2c311a",
+  keyword      = "#b0d1db", -- #3fb7de#6ac8e5#45d4ff#8bd1e6#a8e5f7#bed9e1#b0d1db
+  func         = "#9c4b79", -- #d991e3#84a4b4#b4a284#8536c0#9e2df2#f22d98#b51d40#9e203d#aa3d56#9c4b5e
+  type         = "#93619e", -- #9e6182#96619e
+  string       = "#90695b", -- #4e8923#23896c#25a02b#0b4308#118687#44b6c5#73bfc9#73c9ba#7ac2b6#79beb0#6596d2#9765d2#d5ad6d#ccb38a#cc9e8a#dab9aa#8f6a5c#90695b
+  number       = "#f7acf2", -- #f7acf2#
+  variable     = "#b1b1b1", -- #808080#a6a6a6#cacaca#
+  field        = "#e0e7f5",
+  constant     = "#c69d8f", -- #9e6182#8e397b#b75ca3#bd72bf#bd92be#a6be92#9ea771#afaf7e#848467#6f7246#315a08#316101#488e01#48602f#008a86#006663#5c7916#795216#a5933b#99df43#b3da80#dab280#a05207#6a2005#5d311c#9c867b#c69d8f
+  operator     = "#f1fa75", -- #fef957#fefba4#f1fa75
 
   error        = "#ff3333",
-  warn         = "#ffffff", -- 
+  warn         = "#cbb458", -- #ffcc00#a78d25
   info         = "#00d5ff",
   hint         = "#7be89b",
 
-  tab_active   = "#3d0020", -- 
-  tab_inactive = "#000000", -- 
+  tab_active   = "#373a40", -- #1c2842
+  tab_inactive = "#1a1b1f", -- #0d1322
   selection    = "#2a3f66",
   pmenu_sel    = "#00647a",
-  search       = "#e07b00",
+  search       = "#ff8c00",
 }
 
 local hl = vim.api.nvim_set_hl
@@ -83,8 +73,8 @@ hl(0, "PmenuSel",      { fg = c.bg, bg = c.pmenu_sel, bold = true })
 hl(0, "PmenuSbar",     { bg = c.bg_alt })
 hl(0, "PmenuThumb",    { bg = c.border })
 
-hl(0, "Comment",       { fg = c.comment, bg = c.comment_bg, bold = false, italic = true }) --   ::::::
-hl(0, "SpecialComment",{ fg = c.comment, bg = c.comment_bg, bold = false }) --        ::::::::::::::::
+hl(0, "Comment",       { fg = c.comment, bg = c.comment_bg, bold = true, italic = true })
+hl(0, "SpecialComment",{ fg = c.comment, bg = c.comment_bg, bold = true })
 hl(0, "String",        { fg = c.string })
 hl(0, "Character",     { fg = c.string })
 hl(0, "Number",        { fg = c.number })
@@ -152,7 +142,7 @@ hl(0, "@constant.macro",            { fg = c.constant })
 hl(0, "@namespace",                 { fg = c.type })
 hl(0, "@module",                    { fg = c.type })
 hl(0, "@label",                     { fg = c.keyword })
-hl(0, "@comment",                   { fg = c.comment, bg = c.comment_bg, bold = false, italic = true }) --             
+hl(0, "@comment",                   { fg = c.comment, bg = c.comment_bg, bold = true, italic = true })
 hl(0, "@tag",                       { fg = c.keyword })
 hl(0, "@tag.attribute",             { fg = c.func })
 hl(0, "@tag.delimiter",             { fg = c.fg })

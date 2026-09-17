@@ -32,3 +32,12 @@ alias emedes='/usr/bin/git --git-dir=$HOME/emedes.git --work-tree=$HOME'
 #export GDK_SCALE=1
 #export GDK_DPI_SCALE=0.5
 #alias zeal="QT_OPENGL=software QTWEBENGINE_CHROMIUM_FLAGS=--disable-gpu zeal"
+
+export TERMINAL=kitty
+
+export PATH="$HOME/.local/bin:$PATH"
+
+alias wlr-1="wlr-randr --output eDP-1 --scale 2.0 --pos 1920,0 --output HDMI-A-2 --scale 1.0 --pos 0,0"
+epub2pdf() {
+	"find . -type f -name "*.epub" -exec bash -c 'for f; do pdf="${f%.epub}.pdf"; [ ! -f "$pdf" ] && ebook-convert "$f" "$pdf"; done' _ {} +"
+} # not working
