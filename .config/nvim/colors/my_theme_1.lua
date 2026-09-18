@@ -6,52 +6,54 @@ if not vim.g.ccc_live_reload then
   end
 end
 
-
 vim.g.colors_name = "my_theme_1"
 
--- beware the gates of hell             O     X     X 
---
--- X  X     X     X     X     X                  
--- 
--- god
---
 -- XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-
--- which color is tab text not selected+warn(unsaved)
+-- pennding:
+-- - [ ] variable
+-- - [-] numberr
+-- - [ ] operator
+-- - [-] type
 
 local c = {
-  bg           = "#000000", -- 
-  bg_alt       = "#2e2e2e", -- 
-  bg_float     = "#525252", -- 
-  fg_float     = "#ffffff", --  unknown
-  fg           = "#2cff14", -- 0bffa
-  fg_alt       = "#ff2929", --  currently is both tab text and brackets
-  border       = "#000000",
-  line_nr      = "#1d0047", -- 131725
-  cursor_line  = "#750606", --1a253d ?? waht is this
+  bg                = "#000000", -- 
+  bg_alt            = "#000000", -- 
+  bg_float          = "#111005", -- highlight when scrolling and keeping fn name on top
+  fg_float          = "#ffffff", --  unknown
+  fg                = "#5aff48", -- 0bffa
+  fg_alt            = "#ff2929", --  currently is both tab text and brackets
+  border            = "#000000",
+  line_nr           = "#7719ff", -- 131725
+  cursor_line       = "#750606", --1a253d
+  comment           = "#675007", -- 
+  comment_bg        = "#150000",
+  keyword           = "#00b437", -- 
+  func              = "#ff590b", -- 
+  type              = "#9152ff", -- 
+  string            = "#8c97bb", -- 
+  number            = "#f7ff01", -- 
+  variable          = "#92ff38", -- lower brightness before tuning
+  field             = "#7c6ad7", -- 
+  constant          = "#f860ff", -- 
+  operator          = "#4d79ff", -- 
+  bracket           = "#ff0505",
 
-  comment      = "#640606", -- 
-  comment_bg   = "#141200",
-  keyword      = "#00621e", -- 
-  func         = "#f57b00", -- 
-  type         = "#dc0000", -- 
-  string       = "#424d71", -- 
-  number       = "#ff8095", -- 
-  variable     = "#2868d8", -- 
-  field        = "#513aca", -- put hue into purple
-  constant     = "#f409ff", -- 
-  operator     = "#1f57ff", -- 
+  error             = "#ff3333",
+  warn              = "#ffffff", -- 
+  info              = "#00d5ff",
+  hint              = "#7be89b",
 
-  error        = "#ff3333",
-  warn         = "#ffffff", -- 
-  info         = "#00d5ff",
-  hint         = "#7be89b",
+  tab_active        = "#04001a", -- 
+  tab_inactive      = "#000000", -- 
+  tab_inactive_text = "#8a0000",
+  tab_inactive_fg   = "#ff3636",
+  tab_bg            = "#000000",
+  tab_edge          = "#3d0000",
+  tab_mod           = "#fff142",
 
-  tab_active   = "#3d0020", -- 
-  tab_inactive = "#000000", -- 
-  selection    = "#2a3f66",
-  pmenu_sel    = "#00647a",
-  search       = "#e07b00",
+  selection         = "#2a3f66",
+  pmenu_sel         = "#00647a",
+  search            = "#e07b00",
 }
 
 local hl = vim.api.nvim_set_hl
@@ -139,7 +141,7 @@ hl(0, "@keyword.operator",          { fg = c.operator })
 hl(0, "@keyword.return",            { fg = c.keyword, bold = true })
 hl(0, "@operator",                  { fg = c.operator })
 hl(0, "@punctuation.delimiter",     { fg = c.fg })
-hl(0, "@punctuation.bracket",       { fg = c.fg_alt })
+hl(0, "@punctuation.bracket",       { fg = c.bracket }) --fg_alt
 hl(0, "@punctuation.special",       { fg = c.operator })
 hl(0, "@string",                    { fg = c.string })
 hl(0, "@string.escape",             { fg = c.operator })
@@ -166,16 +168,23 @@ hl(0, "DiagnosticUnderlineWarn",    { underline = true, sp = c.warn })
 hl(0, "DiagnosticUnderlineInfo",    { underline = true, sp = c.info })
 hl(0, "DiagnosticUnderlineHint",    { underline = true, sp = c.hint })
 
+-- tabline plugins
 hl(0, "BufferCurrent",              { fg = c.fg, bg = c.tab_active, bold = true })
+hl(0, "BufferCurrentSign",          { fg = c.tab_edge, bg = c.tab_active })
+hl(0, "BufferCurrentMod",           { fg = c.tab_mod, bg = c.tab_active })
 hl(0, "BufferCurrentIndex",         { fg = c.keyword, bg = c.tab_active })
-hl(0, "BufferCurrentMod",           { fg = c.warn, bg = c.tab_active })
-hl(0, "BufferCurrentSign",          { fg = c.border, bg = c.tab_active })
-hl(0, "BufferVisible",              { fg = c.fg_alt, bg = c.tab_inactive })
-hl(0, "BufferInactive",             { fg = c.fg_alt, bg = c.tab_inactive })
-hl(0, "BufferTabpageFill",          { bg = c.bg_alt })
-hl(0, "BufferInactiveSign",         { fg = c.tab_inactive, bg = c.tab_inactive })
-hl(0, "BufferInactiveMod",          { fg = c.fg_alt, bg = c.tab_inactive })
-hl(0, "BufferInactiveIndex",        { fg = c.fg_alt, bg = c.tab_inactive })
+
+hl(0, "BufferVisible",              { fg = c.tab_inactive_fg, bg = c.tab_inactive }) --1
+hl(0, "BufferVisibleSign",          { fg = c.tab_edge, bg = c.tab_inactive })
+
+hl(0, "BufferInactive",             { fg = c.tab_inactive_text, bg = c.tab_inactive })
+hl(0, "BufferInactiveSign",         { fg = c.tab_edge, bg = c.tab_inactive }) --!fg
+hl(0, "BufferInactiveMod",          { fg = c.tab_mod, bg = c.tab_inactive })
+hl(0, "BufferInactiveIndex",        { fg = c.tab_inactive_fg, bg = c.tab_inactive })
+
+hl(0, "BufferOffset",               { fg = c.tab_bg, bg = c.tab_bg })
+hl(0, "TabLineFill",                { fg = c.tab_bg, bg = c.tab_bg })
+hl(0, "BufferTabpageFill",          { bg = c.tab_bg }) -- maybe the only thing that works
 
 hl(0, "CmpItemAbbr",                { fg = c.fg })
 hl(0, "CmpItemAbbrDeprecated",      { fg = c.line_nr, strikethrough = true })

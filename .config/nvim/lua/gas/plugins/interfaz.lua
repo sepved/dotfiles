@@ -45,6 +45,14 @@ return {
     opts = {},
   },
 
+  {
+    "backdround/tabscope.nvim",
+    config = function()
+      require("tabscope").setup({})
+    end,
+  },
+
+
 
   --[[
   {
@@ -132,15 +140,17 @@ return {
     'romgrk/barbar.nvim',
     config = function()
       require("barbar").setup({
-        options = { theme = "auto" },
         clickable = true,
         tabpages = false,
         insert_at_end = true,
         icons = {
+          preset = "default",
           button = "",
           buffer_index = true,
           filetype = { enabled = true },
-        }
+          separator = { left = "",right = "│"},
+          inactive = { separator = { left = "", right = "│" },
+          separator_at_end = false}}
       })
 
       local map = vim.keymap.set
