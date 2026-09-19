@@ -14,6 +14,11 @@ vim.g.colors_name = "my_theme_1"
 -- - [-] numberr
 -- - [ ] operator
 -- - [-] type
+--
+--
+-- XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+-- missing:
+-- - [ ] shift K color
 
 local c = {
   bg                = "#000000", -- 
@@ -32,7 +37,7 @@ local c = {
   type              = "#9152ff", -- 
   string            = "#8c97bb", -- 
   number            = "#f7ff01", -- 
-  variable          = "#92ff38", -- lower brightness before tuning
+  variable          = "#92ff38", -- 
   field             = "#7c6ad7", -- 
   constant          = "#f860ff", -- 
   operator          = "#4d79ff", -- 

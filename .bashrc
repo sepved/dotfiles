@@ -42,3 +42,5 @@ alias wlr-1="wlr-randr --output eDP-1 --scale 2.0 --pos 1920,0 --output HDMI-A-2
 epub2pdf() {
 	"find . -type f -name "*.epub" -exec bash -c 'for f; do pdf="${f%.epub}.pdf"; [ ! -f "$pdf" ] && ebook-convert "$f" "$pdf"; done' _ {} +"
 } # not working
+
+eval "$(starship init bash)"
