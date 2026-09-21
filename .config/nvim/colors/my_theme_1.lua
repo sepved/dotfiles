@@ -25,7 +25,7 @@ local c = {
   bg_alt            = "#000000", -- 
   bg_float          = "#111005", -- highlight when scrolling and keeping fn name on top
   fg_float          = "#ffffff", --  unknown
-  fg                = "#7eb800", -- 16dc00
+  fg                = "#77bb00", -- 16dc00
 
   fg_alt            = "#c70000", -- 
   border            = "#000000",
@@ -33,17 +33,17 @@ local c = {
   cursor_line       = "#750606", --1a253d
   comment           = "#675007", -- 
   comment_bg        = "#150000",
-  keyword           = "#008629", -- 
-  func              = "#c77200", -- 
-  type              = "#9f52ff", -- 
+  keyword           = "#bb9bd0", -- 
+  func              = "#b86301", -- 
+  type              = "#a257ff", -- 
   string            = "#8c97bb", -- 
   number            = "#cace6f", -- 
-  variable          = "#46be82", -- 479e00
+  variable          = "#6f5d6c", -- 479e00
   field             = "#7c6ad7", -- 
   constant          = "#f860ff", -- 
-  operator          = "#4d79ff", -- 
-  bracket           = "#6632d7",
-  parameter         = "#007dcc",
+  operator          = "#4875ff", -- 
+  bracket           = "#936ee3",
+  parameter         = "#968599",
   delimiter         = "#c79200",
   punctuation       = "#2449b7", -- ; ,
   rusty             = "#822e13",
@@ -58,7 +58,7 @@ local c = {
   tab_inactive      = "#000000", -- 
   tab_inactive_text = "#8a0000",
   tab_inactive_fg   = "#8736ff", -- TAB ACTIVE OUT OF FOCUS TEXT
-  tab_active_text   = "#000000",
+  tab_active_text   = "#89ebd7",
   tab_bg            = "#f3ff0a",
   tab_edge          = "#3d0000",
   tab_mod_text      = "#ffcd19",
@@ -209,7 +209,7 @@ hl(0, "TabLine",    { fg = c.tab_inactive_text, bg = c.tab_inactive, underline =
 --hl(0, "BufferDefaultInactiveSign", { fg = c.tab_edge, bg = c.tab_inactive, underline = false })
 -- hl(0, "BufferDefaultInactiveSignRight", { fg = c.tab_edge, bg = c.tab_inactive, underline = false })
 
-hl(0, "MiniTablineCurrent", { fg = c.tab_active_text, bg = c.tab_active, bold = true })
+hl(0, "MiniTablineCurrent", { fg = c.tab_active_text, bg = c.tab_active, bold = false })
 hl(0, "MiniTablineVisible", { fg = c.tab_inactive_fg, bg = c.tab_inactive })
 hl(0, "MiniTablineHidden", { fg = c.tab_inactive_text, bg = c.tab_inactive })
 hl(0, "MiniTablineModifiedCurrent", { fg = c.tab_mod_text, bg = c.tab_active, bold = true })
