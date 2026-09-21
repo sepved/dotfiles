@@ -25,36 +25,43 @@ local c = {
   bg_alt            = "#000000", -- 
   bg_float          = "#111005", -- highlight when scrolling and keeping fn name on top
   fg_float          = "#ffffff", --  unknown
-  fg                = "#5aff48", -- 0bffa
-  fg_alt            = "#ff2929", --  currently is both tab text and brackets
+  fg                = "#7eb800", -- 16dc00
+
+  fg_alt            = "#c70000", -- 
   border            = "#000000",
-  line_nr           = "#7719ff", -- 131725
+  line_nr           = "#9f47ff", -- 131725
   cursor_line       = "#750606", --1a253d
   comment           = "#675007", -- 
   comment_bg        = "#150000",
-  keyword           = "#00b437", -- 
-  func              = "#ff590b", -- 
-  type              = "#9152ff", -- 
+  keyword           = "#008629", -- 
+  func              = "#c77200", -- 
+  type              = "#9f52ff", -- 
   string            = "#8c97bb", -- 
-  number            = "#f7ff01", -- 
-  variable          = "#92ff38", -- 
+  number            = "#cace6f", -- 
+  variable          = "#46be82", -- 479e00
   field             = "#7c6ad7", -- 
   constant          = "#f860ff", -- 
   operator          = "#4d79ff", -- 
-  bracket           = "#ff0505",
+  bracket           = "#6632d7",
+  parameter         = "#007dcc",
+  delimiter         = "#c79200",
+  punctuation       = "#2449b7", -- ; ,
+  rusty             = "#822e13",
+  ocean             = "#19407c",
 
   error             = "#ff3333",
-  warn              = "#ffffff", -- 
+  warn              = "#19ffe8", -- 
   info              = "#00d5ff",
   hint              = "#7be89b",
 
-  tab_active        = "#04001a", -- 
+  tab_active        = "#1a00a8", -- 
   tab_inactive      = "#000000", -- 
   tab_inactive_text = "#8a0000",
-  tab_inactive_fg   = "#ff3636",
-  tab_bg            = "#000000",
+  tab_inactive_fg   = "#8736ff", -- TAB ACTIVE OUT OF FOCUS TEXT
+  tab_active_text   = "#000000",
+  tab_bg            = "#f3ff0a",
   tab_edge          = "#3d0000",
-  tab_mod           = "#fff142",
+  tab_mod_text      = "#ffcd19",
 
   selection         = "#2a3f66",
   pmenu_sel         = "#00647a",
@@ -90,6 +97,7 @@ hl(0, "PmenuSel",      { fg = c.bg, bg = c.pmenu_sel, bold = true })
 hl(0, "PmenuSbar",     { bg = c.bg_alt })
 hl(0, "PmenuThumb",    { bg = c.border })
 
+-- TEXT
 hl(0, "Comment",       { fg = c.comment, bg = c.comment_bg, bold = false, italic = true }) --   ::::::
 hl(0, "SpecialComment",{ fg = c.comment, bg = c.comment_bg, bold = false }) --        ::::::::::::::::
 hl(0, "String",        { fg = c.string })
@@ -121,11 +129,11 @@ hl(0, "Macro",         { fg = c.func })
 hl(0, "PreCondit",     { fg = c.keyword })
 hl(0, "Special",       { fg = c.operator })
 hl(0, "SpecialChar",   { fg = c.operator })
-hl(0, "Delimiter",     { fg = c.fg })
+hl(0, "Delimiter",     { fg = c.delimiter }) -- :: for example
 
 hl(0, "@variable",                  { fg = c.variable })
 hl(0, "@variable.builtin",          { fg = c.keyword })
-hl(0, "@variable.parameter",        { fg = c.fg_alt })
+hl(0, "@variable.parameter",        { fg = c.parameter })
 hl(0, "@variable.member",           { fg = c.field })
 hl(0, "@property",                  { fg = c.field })
 hl(0, "@field",                     { fg = c.field })
@@ -145,7 +153,7 @@ hl(0, "@keyword.function",          { fg = c.keyword })
 hl(0, "@keyword.operator",          { fg = c.operator })
 hl(0, "@keyword.return",            { fg = c.keyword, bold = true })
 hl(0, "@operator",                  { fg = c.operator })
-hl(0, "@punctuation.delimiter",     { fg = c.fg })
+hl(0, "@punctuation.delimiter",     { fg = c.punctuation }) -- ;
 hl(0, "@punctuation.bracket",       { fg = c.bracket }) --fg_alt
 hl(0, "@punctuation.special",       { fg = c.operator })
 hl(0, "@string",                    { fg = c.string })
@@ -162,7 +170,7 @@ hl(0, "@label",                     { fg = c.keyword })
 hl(0, "@comment",                   { fg = c.comment, bg = c.comment_bg, bold = false, italic = true }) --             
 hl(0, "@tag",                       { fg = c.keyword })
 hl(0, "@tag.attribute",             { fg = c.func })
-hl(0, "@tag.delimiter",             { fg = c.fg })
+hl(0, "@tag.delimiter",             { fg = c.delimiter })
 
 hl(0, "DiagnosticError",            { fg = c.error })
 hl(0, "DiagnosticWarn",             { fg = c.warn })
@@ -173,23 +181,43 @@ hl(0, "DiagnosticUnderlineWarn",    { underline = true, sp = c.warn })
 hl(0, "DiagnosticUnderlineInfo",    { underline = true, sp = c.info })
 hl(0, "DiagnosticUnderlineHint",    { underline = true, sp = c.hint })
 
+
+
 -- tabline plugins
-hl(0, "BufferCurrent",              { fg = c.fg, bg = c.tab_active, bold = true })
+hl(0, "BufferCurrent",              { fg = c.tab_active_text, bg = c.tab_active, bold = true })
 hl(0, "BufferCurrentSign",          { fg = c.tab_edge, bg = c.tab_active })
-hl(0, "BufferCurrentMod",           { fg = c.tab_mod, bg = c.tab_active })
-hl(0, "BufferCurrentIndex",         { fg = c.keyword, bg = c.tab_active })
+hl(0, "BufferCurrentMod",           { fg = c.tab_mod_text, bg = c.tab_active, bold = true })
+hl(0, "BufferCurrentIndex",         { fg = c.tab_active_text, bg = c.tab_active })
 
 hl(0, "BufferVisible",              { fg = c.tab_inactive_fg, bg = c.tab_inactive }) --1
 hl(0, "BufferVisibleSign",          { fg = c.tab_edge, bg = c.tab_inactive })
+hl(0, "BufferVisibleMod",           { fg = c.tab_mod_text, bg = c.tab_active })
 
 hl(0, "BufferInactive",             { fg = c.tab_inactive_text, bg = c.tab_inactive })
 hl(0, "BufferInactiveSign",         { fg = c.tab_edge, bg = c.tab_inactive }) --!fg
-hl(0, "BufferInactiveMod",          { fg = c.tab_mod, bg = c.tab_inactive })
+hl(0, "BufferInactiveMod",          { fg = c.tab_mod_text, bg = c.tab_inactive, bold = true })
 hl(0, "BufferInactiveIndex",        { fg = c.tab_inactive_fg, bg = c.tab_inactive })
 
 hl(0, "BufferOffset",               { fg = c.tab_bg, bg = c.tab_bg })
 hl(0, "TabLineFill",                { fg = c.tab_bg, bg = c.tab_bg })
 hl(0, "BufferTabpageFill",          { bg = c.tab_bg }) -- maybe the only thing that works
+
+-- tabline tests
+hl(0, "TabLine",    { fg = c.tab_inactive_text, bg = c.tab_inactive, underline = false })
+--hl(0, "TabLineSel", { fg = c.tab_active_text, bg = c.tab_active, bold = true, underline = false })
+-- hl(0, "BufferDefaultInactiveIndex", { fg = c.tab_inactive_fg, bg = c.tab_inactive, underline = false })
+--hl(0, "BufferDefaultInactiveSign", { fg = c.tab_edge, bg = c.tab_inactive, underline = false })
+-- hl(0, "BufferDefaultInactiveSignRight", { fg = c.tab_edge, bg = c.tab_inactive, underline = false })
+
+hl(0, "MiniTablineCurrent", { fg = c.tab_active_text, bg = c.tab_active, bold = true })
+hl(0, "MiniTablineVisible", { fg = c.tab_inactive_fg, bg = c.tab_inactive })
+hl(0, "MiniTablineHidden", { fg = c.tab_inactive_text, bg = c.tab_inactive })
+hl(0, "MiniTablineModifiedCurrent", { fg = c.tab_mod_text, bg = c.tab_active, bold = true })
+hl(0, "MiniTablineModifiedVisible", { fg = c.tab_mod_text, bg = c.tab_inactive })
+hl(0, "MiniTablineModifiedHidden", { fg = c.tab_mod_text, bg = c.tab_inactive })
+hl(0, "MiniTablineFill", { fg = c.tab_inactive_text, bg = c.tab_inactive })
+hl(0, "MiniTablineTabpagesection", { fg = c.tab_active_text, bg = c.tab_active, bold = true })
+hl(0, "MiniTablineTrunc", { fg = c.tab_inactive_fg, bg = c.tab_inactive })
 
 hl(0, "CmpItemAbbr",                { fg = c.fg })
 hl(0, "CmpItemAbbrDeprecated",      { fg = c.line_nr, strikethrough = true })

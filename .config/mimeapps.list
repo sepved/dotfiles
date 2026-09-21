@@ -1,0 +1,33 @@
+[Default Applications]
+inode/directory=pcmanfm.desktop
+x-scheme-handler/http=firefox.desktop
+x-scheme-handler/https=firefox.desktop
+x-scheme-handler/chrome=firefox.desktop
+text/html=firefox.desktop
+application/x-extension-htm=firefox.desktop
+application/x-extension-html=firefox.desktop
+application/x-extension-shtml=firefox.desktop
+application/xhtml+xml=firefox.desktop
+application/x-extension-xhtml=firefox.desktop
+application/x-extension-xht=firefox.desktop
+x-scheme-handler/file=pcmanfm.desktop
+x-scheme-handler/about=floorp.desktop
+x-scheme-handler/unknown=floorp.desktop
+application/pdf=sioyek.desktop
+x-scheme-handler/pdf=firefox.desktop
+
+[Added Associations]
+x-scheme-handler/http=firefox.desktop;userapp-Floorp-MVN7Q3.desktop;
+x-scheme-handler/https=firefox.desktop;userapp-Floorp-MVN7Q3.desktop;
+x-scheme-handler/chrome=firefox.desktop;userapp-Floorp-MVN7Q3.desktop;
+text/html=userapp-Floorp-MVN7Q3.desktop;firefox.desktop;
+application/x-extension-htm=userapp-Floorp-MVN7Q3.desktop;firefox.desktop;
+application/x-extension-html=userapp-Floorp-MVN7Q3.desktop;firefox.desktop;
+application/x-extension-shtml=userapp-Floorp-MVN7Q3.desktop;firefox.desktop;
+application/xhtml+xml=userapp-Floorp-MVN7Q3.desktop;firefox.desktop;
+application/x-extension-xhtml=userapp-Floorp-MVN7Q3.desktop;firefox.desktop;
+application/x-extension-xht=userapp-Floorp-MVN7Q3.desktop;firefox.desktop;
+application/pdf=nvim.desktop;
+inode/directory=nvim.desktop;
+inode/symlink=nvim.desktop;
+video/mp4=firefox.desktop;qv4l2.desktop;
