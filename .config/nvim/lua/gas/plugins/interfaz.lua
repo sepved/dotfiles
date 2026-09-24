@@ -1,13 +1,31 @@
-vim.keymap.set({ 'n', 'i', 'v' }, '<MiddleMouse>', '<Nop>') -- turn off mouse middle button pasting randomly
+local function drop_queued(keys)
+  while true do
+    local ch = vim.fn.getcharstr(0)
+    if ch == "" then
+      break
+    end
+    local key = vim.fn.keytrans(ch)
+    if not keys[key] then
+      vim.api.nvim_feedkeys(ch, "i", false)
+      break
+    end
+  end
+end
+
+local scroll_keys = {}
+for _, prefix in ipairs({ "", "2-", "3-", "4-" }) do
+  scroll_keys["<" .. prefix .. "ScrollWheelUp>"] = true
+  scroll_keys["<" .. prefix .. "ScrollWheelDown>"] = true
+end
+
+vim.keymap.set({ "n", "i", "v" }, "<MiddleMouse>", "<Nop>") -- turn off mouse middle button pasting randomly
 vim.opt.clipboard = "unnamedplus"
+vim.opt.mousescroll = "ver:1,hor:1"
 
-vim.keymap.set({ "n", "v" }, "<ScrollWheelDown>", "<C-e>", {
-  silent = true,
-})
-
-vim.keymap.set({ "n", "v" }, "<ScrollWheelUp>", "<C-y>", {
-  silent = true,
-})
+for _, prefix in ipairs({ "", "2-", "3-", "4-" }) do
+  vim.keymap.set({ "n", "v" }, "<" .. prefix .. "ScrollWheelUp>", "<C-y>", { silent = true })
+  vim.keymap.set({ "n", "v" }, "<" .. prefix .. "ScrollWheelDown>", "<C-e>", { silent = true })
+end
 
 
 vim.cmd("colorscheme my_theme_1")
@@ -197,10 +215,28 @@ return {
       end
 
       local ccc = require("ccc")
+      local mapping = ccc.mapping
       -- local convert = require("ccc.utils.convert")
       local live_reload = false
+      local theme_reload_queued = false
       local theme_name
       local source_buf
+
+      local slider_keys = vim.tbl_extend("force", {
+        h = true,
+        l = true,
+        d = true,
+        s = true,
+        m = true,
+        [","] = true,
+      }, scroll_keys)
+
+      local function slider(fn)
+        return function(core)
+          fn(core)
+          drop_queued(slider_keys)
+        end
+      end
 
       local core = ccc.setup({
         highlighter = {
@@ -231,6 +267,22 @@ return {
           ccc.output.hex,
         },
         alpha_show = "hide",
+        mappings = {
+          l = slider(mapping.increase1),
+          h = slider(mapping.decrease1),
+          d = slider(mapping.increase5),
+          s = slider(mapping.decrease5),
+          [","] = slider(mapping.increase10),
+          m = slider(mapping.decrease10),
+          ["<ScrollWheelUp>"] = slider(mapping.increase1),
+          ["<ScrollWheelDown>"] = slider(mapping.decrease1),
+          ["<2-ScrollWheelUp>"] = slider(mapping.increase1),
+          ["<2-ScrollWheelDown>"] = slider(mapping.decrease1),
+          ["<3-ScrollWheelUp>"] = slider(mapping.increase1),
+          ["<3-ScrollWheelDown>"] = slider(mapping.decrease1),
+          ["<4-ScrollWheelUp>"] = slider(mapping.increase1),
+          ["<4-ScrollWheelDown>"] = slider(mapping.decrease1),
+        },
 
       })
 
@@ -257,17 +309,21 @@ return {
             { color }
           )
           core.range[4] = range[2] + #color
-          vim.api.nvim_buf_call(source_buf, function()
-            vim.cmd("silent update")
-          end)
-
-          if theme_name then
-            vim.schedule(function()
+          if theme_reload_queued then
+            return
+          end
+          theme_reload_queued = true
+          vim.schedule(function()
+            theme_reload_queued = false
+            vim.api.nvim_buf_call(source_buf, function()
+              vim.cmd("silent update")
+            end)
+            if theme_name then
               vim.g.ccc_live_reload = true
               pcall(vim.cmd.colorscheme, theme_name)
               vim.g.ccc_live_reload = nil
-            end)
-          end
+            end
+          end)
         end,
       })
 

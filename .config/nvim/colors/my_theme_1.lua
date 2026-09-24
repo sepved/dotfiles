@@ -9,57 +9,50 @@ end
 vim.g.colors_name = "my_theme_1"
 
 -- XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
--- pennding:
--- - [ ] variable
--- - [-] numberr
--- - [ ] operator
--- - [-] type
---
 --
 -- XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
--- missing:
--- - [ ] shift K color
 
 local c = {
-  bg                = "#000000", -- 
+  bg                = "#222222", -- 1f1f1f 2a2a2a 1f1f00 111100 212c21 0c1818, 313c3c 142727
   bg_alt            = "#000000", -- 
-  bg_float          = "#111005", -- highlight when scrolling and keeping fn name on top
+  bg_float          = "#1f1f00", -- highlight when scrolling and keeping fn name on top
   fg_float          = "#ffffff", --  unknown
-  fg                = "#77bb00", -- 16dc00
+  fg                = "#ffff00", -- 16dc00
 
   fg_alt            = "#c70000", -- 
   border            = "#000000",
-  line_nr           = "#9f47ff", -- 131725
+  line_nr           = "#9f9f9e", -- 131725
   cursor_line       = "#750606", --1a253d
-  comment           = "#675007", -- 
-  comment_bg        = "#150000",
-  keyword           = "#bb9bd0", -- 
-  func              = "#b86301", -- 
-  type              = "#a257ff", -- 
-  string            = "#8c97bb", -- 
-  number            = "#cace6f", -- 
-  variable          = "#6f5d6c", -- 479e00
-  field             = "#7c6ad7", -- 
-  constant          = "#f860ff", -- 
-  operator          = "#4875ff", -- 
-  bracket           = "#936ee3",
-  parameter         = "#968599",
-  delimiter         = "#c79200",
-  punctuation       = "#2449b7", -- ; ,
+  comment           = "#7f7f7f", -- 675007
+  comment_bg        = "#0a0000", -- 150000 turn off
+  keyword           = "#6f7efa", -- 0000ff and move L slider (CM) while K is 0 
+  func              = "#ffc09e", -- C 0, M>Y,L 33 (aa00aa)(ffb8f6)
+  type              = "#ba6aff", -- ff0000 and move L slider (MY) while K is 0
+
+  string            = "#c4c89b", -- 
+  number            = "#ffffef", -- ffff7f
+  variable          = "#ffffff", -- ffff7f 479e00
+  field             = "#a7a7ff", -- Move L slider CM together. YK 0,0.
+  constant          = "#ff7d64", -- 
+  operator          = "#54a9ff", -- 005eff 7fffff 4875ff
+  bracket           = "#a1b400", -- only k up
+  parameter         = "#7fbfff",
+  delimiter         = "#ffff00",
+  punctuation       = "#fe6262", -- ff7f00 ; , maybe tiny bit more mage-nta
   rusty             = "#822e13",
   ocean             = "#19407c",
 
   error             = "#ff3333",
-  warn              = "#19ffe8", -- 
+  warn              = "#ffff00", -- 
   info              = "#00d5ff",
   hint              = "#7be89b",
 
-  tab_active        = "#1a00a8", -- 
+  tab_active        = "#000000", -- 
   tab_inactive      = "#000000", -- 
-  tab_inactive_text = "#8a0000",
-  tab_inactive_fg   = "#8736ff", -- TAB ACTIVE OUT OF FOCUS TEXT
-  tab_active_text   = "#89ebd7",
-  tab_bg            = "#f3ff0a",
+  tab_inactive_text = "#00a3ff",
+  tab_inactive_fg   = "#ffffff", -- TAB ACTIVE OUT OF FOCUS TEXT
+  tab_active_text   = "#ffff00",
+  tab_bg            = "#ff0000",
   tab_edge          = "#3d0000",
   tab_mod_text      = "#ffcd19",
 
@@ -98,8 +91,8 @@ hl(0, "PmenuSbar",     { bg = c.bg_alt })
 hl(0, "PmenuThumb",    { bg = c.border })
 
 -- TEXT
-hl(0, "Comment",       { fg = c.comment, bg = c.comment_bg, bold = false, italic = true }) --   ::::::
-hl(0, "SpecialComment",{ fg = c.comment, bg = c.comment_bg, bold = false }) --        ::::::::::::::::
+hl(0, "Comment",       { fg = c.comment, bg = c.bg, bold = false, italic = true }) --   ::::::
+hl(0, "SpecialComment",{ fg = c.comment, bg = c.bg, bold = false }) --        ::::::::::::::::
 hl(0, "String",        { fg = c.string })
 hl(0, "Character",     { fg = c.string })
 hl(0, "Number",        { fg = c.number })
@@ -156,7 +149,7 @@ hl(0, "@operator",                  { fg = c.operator })
 hl(0, "@punctuation.delimiter",     { fg = c.punctuation }) -- ;
 hl(0, "@punctuation.bracket",       { fg = c.bracket }) --fg_alt
 hl(0, "@punctuation.special",       { fg = c.operator })
-hl(0, "@string",                    { fg = c.string })
+hl(0, "@string",                    { fg = c.string, italic = true })
 hl(0, "@string.escape",             { fg = c.operator })
 hl(0, "@string.regex",              { fg = c.string })
 hl(0, "@number",                    { fg = c.number })
@@ -167,7 +160,7 @@ hl(0, "@constant.macro",            { fg = c.constant })
 hl(0, "@namespace",                 { fg = c.type })
 hl(0, "@module",                    { fg = c.type })
 hl(0, "@label",                     { fg = c.keyword })
-hl(0, "@comment",                   { fg = c.comment, bg = c.comment_bg, bold = false, italic = true }) --             
+hl(0, "@comment",                   { fg = c.comment, bg = c.bg, bold = false, italic = true }) --             
 hl(0, "@tag",                       { fg = c.keyword })
 hl(0, "@tag.attribute",             { fg = c.func })
 hl(0, "@tag.delimiter",             { fg = c.delimiter })
